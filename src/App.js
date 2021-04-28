@@ -1,48 +1,38 @@
 import React from 'react';
-import {BrowserRouter, Route, Link} from "react-router-dom";
+import styled from 'styled-components';
+import {BrowserRouter, Route} from "react-router-dom";
+import Header from './components/Header';
+import Inicio from './components/Inicio';
+import Blog from './components/Blog';
+import About from './components/About';
 
 const App = () => {
   return ( 
     <BrowserRouter>
-      <div>
-        <header>
-          <h1>Personal blog</h1>
-          <nav>
-            <Link to="/">Start</Link>
-            <Link to="/blog">Blog</Link>
-            <Link to="/about">About</Link> 
-
-          </nav>
-        </header>
-
-        <main>
-          <Route path="/" exact={true}>
-            <div>
-              <h2>Landing page</h2>
-              <p>This is the main page of the Blog model</p>
-            </div>
-          </Route>
-          <Route path="/blog">
-            <div>
-              <h2>Blog</h2>
-              <ul>
-                  <li>Article #1</li>
-                  <li>Article #2</li>
-                  <li>Article #3</li>
-              </ul>
-            </div>
-          </Route>
-            
-          <Route path="/about">
-            <div>
-              <h2>About</h2>
-              <p>This is a Placeholder for content</p>
-            </div>
-          </Route>
-        </main>
-      </div>
+      <ContenedorPrincipal>
+        <Header />
+        
+        <Main>
+          <Route path="/" exact={true} component={Inicio} />
+          <Route path="/blog" component={Blog} />          
+          <Route path="/about" component={About} />
+        </Main>
+      </ContenedorPrincipal>
     </BrowserRouter>
   );
 }
- 
+
+const ContenedorPrincipal = styled.div `
+    padding: 40px;
+    width: 90%;
+    max-width: 700px;
+`;
+
+const Main = styled.main`
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(129, 129, 129, 0.1)
+`
+
 export default App;
