@@ -1,10 +1,25 @@
 import React from 'react';
-import posts from "./../data/posts"
+import posts from  './../data/posts'
+import {useParams, Redirect} from 'react-router-dom';
 
 const Post = (props) => {
-    console.log(props)
+    const {id} = useParams();
+
+
     return ( 
-        <h1>Post</h1>
+        <>
+            {posts[id-1] ? 
+                <div>
+                    <h1>{posts[id-1].titulo}</h1>
+                    <p> {posts[id-1].texto} </p>
+                </div>
+            :
+            <div>
+                <Redirect to="/" />
+            </div>
+            }
+            
+        </>
      );
 }
  
